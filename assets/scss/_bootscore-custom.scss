@@ -2,13 +2,6 @@
  * Bootscore custom styles
  */
 
-// Add your own code here!
-// Because this file is compiled after Bootstrap, you're also able to use Bootstrap mixins for better code.
-// Some examples can be found here: https://bootscore.me/documentation/bootstrap-css-sass
-/*!
- * Bootscore custom styles
- */
-
 //------------------------------------------------------------------------------
 // 1. Paleta de Colores del Tema Templo
 //    Definimos nuestra paleta de colores personalizada.
@@ -69,6 +62,7 @@ $border-color: $color-bordes;
 // Anulación explícita para enlaces, ya que la variable no es suficiente
 a {
   color: $link-color;
+  text-decoration: none; // Eliminamos el subrayado
 
   &:hover,
   &:focus {
@@ -99,15 +93,14 @@ blockquote {
 }
 
 // Tablas
-.table {
-  // Bootstrap ya aplica estilos, pero podemos refinar el encabezado
+// Hacemos la regla más específica para asegurar que se aplique
+.entry-content .table {
   thead th {
     background-color: rgba($color-acento-dorado, 0.1);
   }
-  // Bootstrap 5.2+ ya tiene filas alternadas por defecto (.table-striped)
-  // Si no se usa esa clase, podemos forzarlo así:
+  
   tbody tr:nth-of-type(even) {
-    background-color: rgba($black, 0.02);
+    background-color: rgba($black, 0.03); // Ligeramente más visible
   }
 }
 

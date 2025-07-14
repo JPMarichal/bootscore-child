@@ -124,6 +124,11 @@ blockquote {
   @include media-breakpoint-up(md) {
     padding: 2.5rem 2rem;
   }
+  
+  // Negritas con el mismo color que h1
+  strong, b {
+    color: $color-verde-h2;
+  }
 }
 
 // Barra lateral y Widgets

@@ -1,0 +1,197 @@
+/*!
+ * Bootscore custom styles
+ */
+
+// Add your own code here!
+// Because this file is compiled after Bootstrap, you're also able to use Bootstrap mixins for better code.
+// Some examples can be found here: https://bootscore.me/documentation/bootstrap-css-sass
+
+//------------------------------------------------------------------------------
+// 1. Paleta de Colores del Tema Templo
+//    Definimos nuestra paleta de colores personalizada.
+//------------------------------------------------------------------------------
+$color-primario-crema: #f9f8f4;
+$color-acento-dorado: #daa520;
+$color-acento-dorado-oscuro: #b8860b;
+
+// Paleta de verdes para contenido principal
+$color-verde-h1: #2d5a4a;
+$color-verde-h2: #3e725f;
+$color-verde-h3: #578a78;
+$color-verde-h4: #70a291;
+$color-verde-h5h6: #89b9aa;
+
+// Paleta de azules para la barra lateral
+$color-azul-widget-titulo: #4682b4;
+$color-azul-widget-fondo: #f5f8fa;
+
+// Colores de texto y bordes
+$color-texto-principal: #333333;
+$color-texto-secundario: #555555;
+$color-bordes: #e0e0e0;
+
+//------------------------------------------------------------------------------
+// 2. Sobrescritura de Variables de Bootstrap
+//    Usamos nuestra paleta para modificar las variables por defecto de Bootstrap.
+//    Nota: Para una mejor práctica en bootscore, estas sobrescrituras a menudo
+//    se colocan en _bootscore-variables.scss, pero funcionarán aquí también.
+//------------------------------------------------------------------------------
+
+// Colores base del cuerpo
+$body-bg: $color-primario-crema;
+$body-color: $color-texto-principal;
+
+// Enlaces
+$link-color: $color-acento-dorado-oscuro;
+$link-hover-color: darken($link-color, 10%);
+
+// Fuentes
+$font-family-sans-serif: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$headings-font-family: 'Trajan Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+$headings-font-weight: 700;
+
+// Botones y Acentos (usando el dorado como color primario del tema)
+$primary: $color-acento-dorado;
+$secondary: $color-texto-principal;
+
+// Bordes
+$border-radius: 5px;
+$border-color: $color-bordes;
+
+//------------------------------------------------------------------------------
+// 3. Estilos Personalizados del Tema Templo
+//    Aquí aplicamos los estilos específicos para los elementos.
+//------------------------------------------------------------------------------
+
+// Encabezados con su paleta de verdes
+h1, .h1 { color: $color-verde-h1; }
+h2, .h2 { color: $color-verde-h2; }
+h3, .h3 { color: $color-verde-h3; }
+h4, .h4 { color: $color-verde-h4; }
+h5, .h5, h6, .h6 { color: $color-verde-h5h6; }
+
+// Blockquotes y Citas
+blockquote {
+  border-left: 5px solid $color-acento-dorado-oscuro;
+  background-color: rgba($color-acento-dorado-oscuro, 0.05);
+  padding: 1rem 1.5rem;
+  font-style: italic;
+  
+  cite {
+    display: block;
+    margin-top: 0.5rem;
+    text-align: right;
+    font-style: normal;
+  }
+}
+
+// Tablas
+.table {
+  // Bootstrap ya aplica estilos, pero podemos refinar el encabezado
+  thead th {
+    background-color: rgba($color-acento-dorado, 0.1);
+  }
+  // Bootstrap 5.2+ ya tiene filas alternadas por defecto (.table-striped)
+  // Si no se usa esa clase, podemos forzarlo así:
+  tbody tr:nth-of-type(even) {
+    background-color: rgba($black, 0.02);
+  }
+}
+
+// Barra lateral y Widgets
+.widget {
+  background-color: $color-azul-widget-fondo;
+  border: 1px solid darken($color-azul-widget-fondo, 5%);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: $border-radius;
+
+  .widget-title {
+    color: $color-azul-widget-titulo;
+    font-family: $headings-font-family;
+    font-size: 1.2rem;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 0.5rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li a {
+      display: block;
+      padding: 0.5em 0;
+      border-bottom: 1px solid darken($color-azul-widget-fondo, 5%);
+      &:hover {
+        color: $color-acento-dorado;
+      }
+    }
+    li:last-child a {
+      border-bottom: none;
+    }
+  }
+}
+
+// Formularios (Alineación de radios y checkboxes)
+.form-check {
+  // Bootstrap maneja esto bien, pero si se usa una estructura sin .form-check:
+  fieldset > div, .form-group > div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+
+    label {
+      margin-bottom: 0;
+    }
+    
+    input[type="radio"], input[type="checkbox"] {
+      margin: 0 0.8em 0 0;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// Pie de página
+.site-footer {
+  background-color: $color-texto-principal;
+  color: $color-primario-crema;
+  padding: 3rem 1rem;
+  border-top: 1px solid $color-acento-dorado;
+
+  a {
+    color: $color-primario-crema;
+    opacity: 0.9;
+    &:hover {
+      color: $color-acento-dorado;
+      opacity: 1;
+    }
+  }
+}
+
+//------------------------------------------------------------------------------
+// 4. Media Queries usando Mixins de Bootstrap
+//------------------------------------------------------------------------------
+@include media-breakpoint-down(lg) {
+  main {
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .header-content { // Suponiendo una clase para el contenido del header
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  // Ajustes para la navegación en móviles si es necesario
+  .main-navigation .navbar-nav {
+    align-items: center;
+  }
+  
+  h1, .h1 { font-size: 2em; }
+  h2, .h2 { font-size: 1.7em; }
+  h3, .h3 { font-size: 1.3em; }
+}

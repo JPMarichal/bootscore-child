@@ -27,42 +27,30 @@ $color-texto-secundario: #555555;
 $color-bordes: #e0e0e0;
 
 //------------------------------------------------------------------------------
-// 2. Sobrescritura de Variables de Bootstrap
-//    Usamos nuestra paleta para modificar las variables por defecto de Bootstrap.
-//    Nota: Para una mejor práctica en bootscore, estas sobrescrituras a menudo
-//    se colocan en _bootscore-variables.scss, pero funcionarán aquí también.
+// 2. Sobrescritura de Variables de Bootstrap (para referencia)
+//    Estas variables se usan en nuestras anulaciones explícitas.
 //------------------------------------------------------------------------------
-
-// Colores base del cuerpo
-$body-bg: $color-primario-crema;
-$body-color: $color-texto-principal;
-
-// Enlaces
 $link-color: $color-acento-dorado-oscuro;
 $link-hover-color: darken($link-color, 10%);
-
-// Fuentes
-$font-family-sans-serif: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 $headings-font-family: 'Trajan Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
-$headings-font-weight: 700;
-
-// Botones y Acentos (usando el dorado como color primario del tema)
-$primary: $color-acento-dorado;
-$secondary: $color-texto-principal;
-
-// Bordes
 $border-radius: 5px;
-$border-color: $color-bordes;
 
 //------------------------------------------------------------------------------
-// 3. Estilos Personalizados y Anulaciones
-//    Aquí aplicamos los estilos específicos para los elementos.
+// 3. Anulaciones Explícitas y Estilos Personalizados
+//    Aquí aplicamos los estilos para anular los valores por defecto.
 //------------------------------------------------------------------------------
 
-// Anulación explícita para enlaces, ya que la variable no es suficiente
+// Estilos base del cuerpo
+body {
+  background-color: $color-primario-crema;
+  color: $color-texto-principal;
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+// Anulación explícita para enlaces
 a {
   color: $link-color;
-  text-decoration: none; // Eliminamos el subrayado
+  text-decoration: none;
 
   &:hover,
   &:focus {
@@ -70,12 +58,25 @@ a {
   }
 }
 
+// Anulación explícita para botones
+.btn-primary {
+  background-color: $color-acento-dorado;
+  border-color: $color-acento-dorado;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $color-acento-dorado-oscuro;
+    border-color: $color-acento-dorado-oscuro;
+  }
+}
+
 // Encabezados con su paleta de verdes
-h1, .h1 { color: $color-verde-h1; }
-h2, .h2 { color: $color-verde-h2; }
-h3, .h3 { color: $color-verde-h3; }
-h4, .h4 { color: $color-verde-h4; }
-h5, .h5, h6, .h6 { color: $color-verde-h5h6; }
+h1, .h1 { color: $color-verde-h1; font-family: $headings-font-family; }
+h2, .h2 { color: $color-verde-h2; font-family: $headings-font-family; }
+h3, .h3 { color: $color-verde-h3; font-family: $headings-font-family; }
+h4, .h4 { color: $color-verde-h4; font-family: $headings-font-family; }
+h5, .h5, h6, .h6 { color: $color-verde-h5h6; font-family: $headings-font-family; }
 
 // Blockquotes y Citas
 blockquote {
@@ -93,7 +94,6 @@ blockquote {
 }
 
 // Tablas
-// Hacemos la regla más específica para asegurar que anule a Bootstrap
 .entry-content .table {
   & > thead {
     th {
@@ -102,7 +102,7 @@ blockquote {
   }
   
   & > tbody > tr:nth-of-type(even) {
-    & > * { // Aplicamos el color a todas las celdas (td, th) de la fila
+    & > * {
       background-color: rgba(0, 0, 0, 0.03);
     }
   }
@@ -120,7 +120,7 @@ blockquote {
     color: $color-azul-widget-titulo;
     font-family: $headings-font-family;
     font-size: 1.2rem;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid $color-bordes;
     padding-bottom: 0.5rem;
     margin-top: 0;
     margin-bottom: 1rem;
@@ -146,7 +146,6 @@ blockquote {
 
 // Formularios (Alineación de radios y checkboxes)
 .form-check {
-  // Bootstrap maneja esto bien, pero si se usa una estructura sin .form-check:
   fieldset > div, .form-group > div {
     display: flex;
     align-items: center;
@@ -191,12 +190,11 @@ blockquote {
 }
 
 @include media-breakpoint-down(md) {
-  .header-content { // Suponiendo una clase para el contenido del header
+  .header-content {
     flex-direction: column;
     text-align: center;
   }
   
-  // Ajustes para la navegación en móviles si es necesario
   .main-navigation .navbar-nav {
     align-items: center;
   }

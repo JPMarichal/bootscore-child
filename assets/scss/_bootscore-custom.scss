@@ -108,6 +108,24 @@ blockquote {
   }
 }
 
+// Cuerpo de los artículos - Marco con fondo blanco
+.entry-content {
+  background-color: #ffffff;
+  border-radius: $border-radius;
+  padding: 2rem 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  // Responsive padding para pantallas más grandes
+  @include media-breakpoint-up(sm) {
+    padding: 2rem 1.5rem;
+  }
+  
+  @include media-breakpoint-up(md) {
+    padding: 2.5rem 2rem;
+  }
+}
+
 // Barra lateral y Widgets
 .widget {
   background-color: $color-azul-widget-fondo;

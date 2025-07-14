@@ -32,7 +32,7 @@ $color-bordes: #e0e0e0;
 //------------------------------------------------------------------------------
 $link-color: $color-acento-dorado-oscuro;
 $link-hover-color: darken($link-color, 10%);
-$headings-font-family: 'Trajan Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+$headings-font-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 $border-radius: 5px;
 
 //------------------------------------------------------------------------------
@@ -108,6 +108,43 @@ blockquote {
   }
 }
 
+// Encabezado de los artículos - Marco con fondo blanco
+.entry-header {
+  background-color: #ffffff;
+  border-radius: $border-radius;
+  padding: 1.5rem 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  // Responsive padding para pantallas más grandes
+  @include media-breakpoint-up(sm) {
+    padding: 1.5rem 1.5rem;
+  }
+  
+  @include media-breakpoint-up(md) {
+    padding: 2rem 2rem;
+  }
+  
+  // Eliminar margen inferior del título dentro del header
+  .entry-title {
+    margin-bottom: 0.5rem;
+  }
+  
+  // Estilo para la metainformación
+  .entry-meta {
+    color: $color-texto-secundario;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    
+    a {
+      color: $color-texto-secundario;
+      &:hover {
+        color: $link-color;
+      }
+    }
+  }
+}
+
 // Cuerpo de los artículos - Marco con fondo blanco
 .entry-content {
   background-color: #ffffff;
@@ -125,7 +162,7 @@ blockquote {
     padding: 2.5rem 2rem;
   }
   
-  // Negritas con el mismo color que h1
+  // Negritas con el mismo color que h2
   strong, b {
     color: $color-verde-h2;
   }

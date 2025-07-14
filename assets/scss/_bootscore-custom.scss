@@ -93,14 +93,18 @@ blockquote {
 }
 
 // Tablas
-// Hacemos la regla más específica para asegurar que se aplique
+// Hacemos la regla más específica para asegurar que anule a Bootstrap
 .entry-content .table {
-  thead th {
-    background-color: rgba($color-acento-dorado, 0.1);
+  & > thead {
+    th {
+      background-color: rgba($color-acento-dorado, 0.1);
+    }
   }
   
-  tbody tr:nth-of-type(even) {
-    background-color: rgba($black, 0.03); // Ligeramente más visible
+  & > tbody > tr:nth-of-type(even) {
+    & > * { // Aplicamos el color a todas las celdas (td, th) de la fila
+      background-color: rgba(0, 0, 0, 0.03);
+    }
   }
 }
 
